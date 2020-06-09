@@ -1,0 +1,253 @@
+package javaclasshomework10;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ItemListener;
+
+public class JIceCreamParlor extends JFrame implements ItemListener
+{ 
+     //Ice Cream Scoop Sizes  //boxes
+    final double LikeItScoopsPrice = 2.00;
+    final double LoveItScoopsPrice = 4.00;
+    final double WantItScoopsPrice = 6.00;
+    final double GottaHaveItScoopsPrice = 8.00;        
+    
+    //Ice Cream Flavors  //list(scroll) or radio buttons //take out the pric
+     final double BlackcherryIceCreamFlavor = 0;
+     final double ChocolateIceCreamFlavor = 0;
+     final double MintChocolateChipIceCreamFlavor = 0;
+     final double NapoleonIceCreamFlavor = 0;
+     final double OreoIceCreamFlavor = 0;
+     final double PistachioIceCreamFlavor = 0;
+     final double StrawberryIceCreamFlavor = 0;
+     final double VanillaIceCreamFlavor = 0;
+     
+      //Ice Cream Toppings //boxes //affects the price only not change
+    final double BlueberryIceCreamToppings = 0.50;  //1
+    final double ChocolateSprinklesIceCreamToppings = 0.50;
+    final double GummiesIceCreamToppings = 0.50;
+    final double MandMIceCreamToppings = 0.50;
+    final double OreoIceCreamToppings = 0.50;
+    final double PeppermintIceCreamToppings = 0.50;  //6
+    
+      //Ice Cream Syrups  //radio
+    final double ButterscotchIceCreamSyrup = 0.50;
+    final double CaramelIceCreamSyrup = 0.50;
+    final double HotFudgeIceCreamSyrup = 0.50; 
+    final double StrawberryIceCreamSyrup = 0.50;
+    double totalPrice = 0;
+    
+    FlowLayout flow = new FlowLayout(10);
+    JLabel ScoopsSizeLabel = new JLabel("What Ice Cream Scoop Size would you like? ");
+    JComboBox Scoops = new JComboBox();
+    JCheckBox SmallScoopsSize = new JCheckBox("LikeItScoopsPrice", false);
+    JCheckBox MediumScoopsSize = new JCheckBox("LoveItScoopsPrice", false);
+    JCheckBox LargeScoopsSize = new JCheckBox("WantItScoopsPrice" , false);
+    JCheckBox ExtraLargeScoopsSize = new JCheckBox("GottaHaveItScoopsPrice", false);
+        
+     //list(scroll(will be checkboxes)
+    JLabel IceCreamFlavorLabel = new JLabel("What Flavor Ice Cream would you like? ");
+    //ButtonGroup Flavor = new ButtonGroup(); //button is pick one of the group
+    JCheckBox BlackcherryFlavor = new JCheckBox("Blackcherry", false);
+    JCheckBox ChocolateFlavor = new JCheckBox("Chocolate", false);
+    JCheckBox MintChocolateChipFlavor = new JCheckBox("Mint Chocolate Chip", false);
+    JCheckBox NapoleonFlavor = new JCheckBox("Napoleon", false);
+    JCheckBox OreoFlavor = new JCheckBox("Oreo", false);
+    JCheckBox PistachioFlavor = new JCheckBox("Pistachio", false);
+    JCheckBox StrawberryFlavor = new JCheckBox("Strawberry", false);
+    JCheckBox VanillaFlavor = new JCheckBox("Vanilla", false);
+       
+     //boxes
+    JLabel IceCreamToppingsLabel = new JLabel("What Ice Cream Toppings would you like? ");
+    JCheckBox Toppings = new JCheckBox();
+    JCheckBox BlueberryToppings = new JCheckBox("Blueberry", false);
+    JCheckBox ChocolateSprinklesToppings = new JCheckBox("Chocolate Sprinkles", false);
+    JCheckBox GummiesToppings = new JCheckBox("Gummies", false);
+    JCheckBox MandMToppings = new JCheckBox("M & Ms", false);
+    JCheckBox OreoToppings = new JCheckBox("Oreos", false);
+    JCheckBox PeppermintToppings = new JCheckBox("Peppermint", false);
+    
+     //radio
+    JLabel IceCreamSyrupsLabel = new JLabel("What Ice Cream Syrup would you like? ");
+    ButtonGroup Syrup = new ButtonGroup();
+    JRadioButton ButterscotchSyrup = new JRadioButton("Butterscotch");
+    JRadioButton CaramelSyrup = new JRadioButton("Caramel");
+    JRadioButton HotFudgeSyrup = new JRadioButton("Hot Fudge");
+    JRadioButton StrawberrySyrup  = new JRadioButton("Strawberry");
+ 
+    JTextField Price = new JTextField(4);
+    JLabel PriceLabel = new JLabel("The total is " + totalPrice); 
+    
+    public JIceCreamParlor() 
+    {
+        super("The Ice Cream Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout(10));
+    
+        //image text   //put in the constructor
+        ImageIcon ConeImage = new ImageIcon("Cone.png");
+        JLabel picture= new JLabel(" "); 
+        picture.setIcon(ConeImage);
+        picture.setPreferredSize(new Dimension(10, 20));
+        add(picture);
+        
+        //Add Scoops
+        Scoops.addItem(ScoopsSizeLabel.getText());
+        Scoops.addItem(SmallScoopsSize.getText());
+        Scoops.addItem(MediumScoopsSize.getText());
+        Scoops.addItem(LargeScoopsSize.getText());
+        Scoops.addItem(ExtraLargeScoopsSize.getText()); //getText displays text not everything
+        add(Scoops);
+        add(Price);
+                
+        SmallScoopsSize.addItemListener(this);
+        MediumScoopsSize.addItemListener(this);
+        LargeScoopsSize.addItemListener(this);
+        ExtraLargeScoopsSize.addItemListener(this);
+        Scoops.addItemListener(this);
+        ButtonGroup Scoops = new ButtonGroup();
+        
+        //Add Flavors
+        ButtonGroup Flavor = new ButtonGroup();
+        add(BlackcherryFlavor);
+        add(ChocolateFlavor);
+        add(MintChocolateChipFlavor);
+        add(NapoleonFlavor);
+        add(OreoFlavor);
+        add(PistachioFlavor);
+        add(StrawberryFlavor);
+        add(VanillaFlavor);
+        add(Price);
+        
+        BlackcherryFlavor.addItemListener(this);
+        ChocolateFlavor.addItemListener(this);
+        MintChocolateChipFlavor.addItemListener(this);
+        NapoleonFlavor.addItemListener(this);
+        OreoFlavor.addItemListener(this);
+        PistachioFlavor.addItemListener(this);
+        StrawberryFlavor.addItemListener(this);
+        VanillaFlavor.addItemListener(this);
+        
+        //Add Toppings
+         add(IceCreamToppingsLabel);
+         add(BlueberryToppings);
+         add(ChocolateSprinklesToppings);
+         add(GummiesToppings);
+         add(MandMToppings);
+         add(OreoToppings);
+         add(PeppermintToppings);
+         add(Price);
+    
+        BlueberryToppings.addItemListener(this);
+        ChocolateSprinklesToppings.addItemListener(this);
+        GummiesToppings.addItemListener(this);
+        MandMToppings.addItemListener(this);
+        OreoToppings.addItemListener(this);
+        PeppermintToppings.addItemListener(this);
+        Toppings.addItemListener(this);
+        ButtonGroup Toppings = new ButtonGroup();
+        
+        //Add Syrups
+         add(IceCreamSyrupsLabel);
+        Syrup.add(ButterscotchSyrup);
+        Syrup.add(CaramelSyrup);
+        Syrup.add(HotFudgeSyrup);
+        Syrup.add(StrawberrySyrup);//to make the radio button group together
+        add(ButterscotchSyrup);   //to make the buttons appear
+        add(CaramelSyrup);
+        add(HotFudgeSyrup);
+        add(StrawberrySyrup);
+        add(Price);
+        
+        ButterscotchSyrup.addItemListener(this);
+        CaramelSyrup.addItemListener(this);
+        HotFudgeSyrup.addItemListener(this);
+        StrawberrySyrup.addItemListener(this);
+}
+    
+    @Override
+public void itemStateChanged(ItemEvent e)
+{ 
+ //Scoops Price Selector
+    Object source  = e.getSource();
+    if (source == Scoops) //separates every single component
+    {
+    int select = e.getStateChange();   //int select is only check and radio but not combo 
+    int i = Scoops.getSelectedIndex(); //only used for combo box getSelectedIndex... shows index number given
+    if(i == 1)
+        totalPrice = LikeItScoopsPrice;
+    if(i == 2)
+        totalPrice = LoveItScoopsPrice;
+    if(i == 3)
+        totalPrice = WantItScoopsPrice;
+    if(i == 4)
+        totalPrice = GottaHaveItScoopsPrice;
+    Price.setText("$" + totalPrice);
+    }
+    
+    //Toppings Price Selector
+   if(e.getSource() == BlueberryToppings)
+            if(BlueberryToppings.isSelected())
+                totalPrice += BlueberryIceCreamToppings;
+            else
+                totalPrice -= BlueberryIceCreamToppings;   
+        if(e.getSource() == ChocolateSprinklesToppings)
+            if (ChocolateSprinklesToppings.isSelected())
+                totalPrice += ChocolateSprinklesIceCreamToppings;
+            else
+                totalPrice -= ChocolateSprinklesIceCreamToppings;
+         if (e.getSource() == GummiesToppings) 
+            if(GummiesToppings.isSelected())
+                totalPrice += GummiesIceCreamToppings;
+            else
+                totalPrice -= GummiesIceCreamToppings;
+         if (e.getSource() == MandMToppings) 
+            if(MandMToppings.isSelected())
+                totalPrice += MandMIceCreamToppings;
+            else
+                totalPrice -= MandMIceCreamToppings;
+         if (e.getSource() == OreoToppings) 
+            if(OreoToppings.isSelected())
+                totalPrice += OreoIceCreamToppings;
+            else
+                totalPrice -= OreoIceCreamToppings;
+         if (e.getSource() == PeppermintToppings) 
+            if(PeppermintToppings.isSelected())
+                totalPrice += PeppermintIceCreamToppings;
+            else
+                totalPrice -= PeppermintIceCreamToppings;
+             Price.setText("$" + totalPrice);
+    
+        //Syrup Price Selector
+       if (e.getSource() == ButterscotchSyrup) 
+           if(ButterscotchSyrup.isSelected())
+               totalPrice += ButterscotchIceCreamSyrup;
+           else
+                totalPrice -= ButterscotchIceCreamSyrup;
+         if (e.getSource() == CaramelSyrup) 
+           if(CaramelSyrup.isSelected())
+                totalPrice += CaramelIceCreamSyrup;
+           else
+                totalPrice -= CaramelIceCreamSyrup;
+         if (e.getSource() == HotFudgeSyrup) 
+            if(HotFudgeSyrup.isSelected())
+                totalPrice += HotFudgeIceCreamSyrup;
+          else
+                totalPrice -= HotFudgeIceCreamSyrup;
+          if (e.getSource() == StrawberrySyrup) 
+            if(StrawberrySyrup.isSelected())
+                totalPrice += StrawberryIceCreamSyrup;
+           else
+                totalPrice -= StrawberryIceCreamSyrup;
+          Price.setText("$" + totalPrice);  //sets a text box    
+}
+
+public static void main(String[] args) 
+    {
+      JIceCreamParlor aFrame = new JIceCreamParlor();
+      final int Width = 900;
+      final int Height = 500;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
