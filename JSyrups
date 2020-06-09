@@ -1,0 +1,75 @@
+package javaclasshomework10;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ItemListener;
+
+public class JSyrups  extends JFrame implements ItemListener
+{
+        //Ice Cream Syrups  //radio
+    final double ButterscotchIceCreamSyrup = 0.50;
+    final double CaramelIceCreamSyrup = 0.50;
+    final double HotFudgeIceCreamSyrup = 0.50; 
+    final double StrawberryIceCreamSyrup = 0.50;
+    
+    double totalPrice;
+    
+       //radio
+    JLabel IceCreamSyrupsLabel = new JLabel("What Ice Cream Syrup would you like? ");
+    JRadioButton ButterscotchSyrup = new JRadioButton("Butterscotch", false);
+    JRadioButton CaramelSyrup= new JRadioButton("Caramel", false);
+    JRadioButton HotFudgeSyrup = new JRadioButton("Hot Fudge", false);
+    JRadioButton StrawberrySyrup  = new JRadioButton("Strawberry", false);
+
+    JTextField Price = new JTextField(4);
+    JLabel PriceLabel = new JLabel("The total is " + totalPrice);   
+    
+public JSyrups()
+    {
+        super("The Ice Cream Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+            ButterscotchSyrup.addItemListener(this);
+        CaramelSyrup.addItemListener(this);
+        HotFudgeSyrup.addItemListener(this);
+        StrawberrySyrup.addItemListener(this);
+    }
+    
+    //@Override
+    public void actionPerformed(ActionEvent e) //make separate ifs no else if
+    { 
+       Object source = e.getSource();  //object source is for everything ( buttons) and source is what is clicked
+       int = ItemEvent.SELECTED; //selected is for t/f in a check box
+        
+            //Syrup Prices
+        if (source == ButterscotchSyrup) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += ButterscotchIceCreamSyrup;
+            else
+                totalPrice -= ButterscotchIceCreamSyrup;
+         if (e.getSource() == CaramelSyrup) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += CaramelIceCreamSyrup;
+            else
+                totalPrice -= CaramelIceCreamSyrup;
+        else if (e.getSource() == HotFudgeSyrup) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += HotFudgeIceCreamSyrup;
+            else
+                totalPrice -= HotFudgeIceCreamSyrup;
+        else if (e.getSource() == StrawberrySyrup) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += StrawberryIceCreamSyrup;
+            else
+                totalPrice -= StrawberryIceCreamSyrup;
+        Price.setText("$" + totalPrice);  //sets a text box
+    }
+public static void main(String[] args) 
+    {
+      JSyrups aFrame = new JSyrups();
+      final int Width = 1000;
+      final int Height = 900;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
