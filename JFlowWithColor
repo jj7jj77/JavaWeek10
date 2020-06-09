@@ -1,0 +1,27 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.Color;
+public class JFrameWithColor extends JFrame
+{
+   private final int SIZE = 180;
+   private Container con = getContentPane();
+   private JButton button = 
+      new JButton("Press Me");
+   public JFrameWithColor()
+   {
+      super("Frame");
+      setSize(SIZE, SIZE);
+      con.setLayout(new FlowLayout());
+      con.add(button);
+      Color lightskyblue = new Color(135,206,250); //to change the color 
+      con.setBackground(lightskyblue);
+      button.setBackground(Color.RED);
+      button.setForeground(Color.WHITE);
+   }
+   public static void main(String[] args)
+   {
+      JFrameWithColor frame =
+         new JFrameWithColor();
+      frame.setVisible(true);
+   }
+}
