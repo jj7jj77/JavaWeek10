@@ -1,0 +1,97 @@
+/*
+Write a Java GUI application for an ice-cream parlor. 
+The user picks how many scoops he wants ($2.00 per scoop),
+Picks a flavor from a list (or Radio Buttons), and choose 
+which topping he wants ($0.50 per topping). 
+The program has a "Buy" button,which when clicked displays 
+his order details, and how much it costs. 
+Include at least one picture of ice cream. 
+You can also experiment with color in your GUI.
+
+*/
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ItemListener;
+
+        
+public class JScoops extends JFrame implements ItemListener
+{
+   //Ice Cream Scoop Sizes  //boxes
+    final double LikeItScoopsPrice = 2.00;
+    final double LoveItScoopsPrice = 4.00;
+    final double WantItScoopsPrice = 6.00;
+    final double GottaHaveItScoopsPrice = 8.00;
+
+    double totalPrice = 0;
+    
+    //creating list(scroll(will be checkboxes)
+    FlowLayout flow = new FlowLayout();
+    //JLabel ScoopsSizeLabel = new JLabel("What Ice Cream Scoop Size would you like? ");  //dont need cause is in majorChoice  
+    JComboBox majorChoice = new JComboBox();
+    JCheckBox SmallScoopsSize = new JCheckBox("LikeItScoopsPrice", false);
+    JCheckBox MediumScoopsSize = new JCheckBox("LoveItScoopsPrice", false);
+    JCheckBox LargeScoopsSize = new JCheckBox("WantItScoopsPrice" , false);
+    JCheckBox ExtraLargeScoopsSize = new JCheckBox("GottaHaveItScoopsPrice", false);
+    ButtonGroup group = new ButtonGroup();
+    
+    JTextField Price = new JTextField(4);
+    JLabel PriceLabel = new JLabel("The total is " + totalPrice); 
+    
+   public JScoops()
+    {
+        super("The Ice Cream Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+        
+        ImageIcon ConeImage = new ImageIcon("Cone.png");
+        JLabel picture= new JLabel(" "); 
+        picture.setIcon(ConeImage);
+        //picture.setPreferredSize(new Dimension(1, 122));
+        add(picture, BorderLayout.CENTER);
+        
+        majorChoice.addItem("What Ice Cream Scoop Size would you like? ");
+        majorChoice.addItem(SmallScoopsSize.getText());
+        majorChoice.addItem(MediumScoopsSize.getText());
+        majorChoice.addItem(LargeScoopsSize.getText());
+        majorChoice.addItem(ExtraLargeScoopsSize.getText()); //getText displays text not everything
+        add(majorChoice);
+        add(Price);
+                
+        Price.setText("$" + totalPrice);
+        SmallScoopsSize.addItemListener(this);
+        MediumScoopsSize.addItemListener(this);
+        LargeScoopsSize.addItemListener(this);
+        ExtraLargeScoopsSize.addItemListener(this);
+        majorChoice.addItemListener(this);
+    }     
+                
+@Override
+public void itemStateChanged(ItemEvent e)
+{ 
+    Object source  = e.getSource();
+    int select = e.getStateChange();   //int select is only check and radio but not combo 
+    int i = majorChoice.getSelectedIndex(); //only used for combo box get selectindex... shows indexnumber given
+    //System.out.println("hi"+ i); //Test
+    if(i == 1)
+        totalPrice = LikeItScoopsPrice;
+    if(i == 2)
+        totalPrice = LoveItScoopsPrice;
+    if(i == 3)
+        totalPrice = WantItScoopsPrice;
+    if(i == 4)
+        totalPrice = GottaHaveItScoopsPrice;
+    Price.setText("$" + totalPrice);
+}
+
+public static void main(String[] args)
+    {
+      JScoops aFrame = new JScoops();
+      final int Width = 1000;
+      final int Height = 900;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
+//System.out.println(e.getItem(totalPrice));
