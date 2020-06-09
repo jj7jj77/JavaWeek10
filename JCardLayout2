@@ -1,0 +1,54 @@
+package javaclassweek10;
+import java.awt.CardLayout;
+import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JCardLayout2 extends JFrame implements ActionListener //implementing action listener //class changed from previous class file and extends from the first class file)
+{
+    private JButton nb = new JButton("North"); //removed from JBorderLayout Class
+    private JButton sb = new JButton("South");
+    private JButton eb = new JButton("East");
+    private JButton wb = new JButton("West");
+    private JButton cb = new JButton("Center");
+    CardLayout cardLayout = new CardLayout();
+    
+    public JCardLayout2() //constructor name changed from previous class file
+    {
+        //setLayout(new BorderLayout());  //changed from setLayout to FlowLayout(below)
+        //setLayout(new FlowLayout(FlowLayout.RIGHT)); changed from FlowLayout to GridLayout (below)
+        //setLayout(new GridLayout(2,3,2,4)); changed from GridLayout to CardLayout (below)
+        setLayout(new CardLayout()); 
+        setLayout(cardLayout); //uses the layout manager
+        //change the "add(nb, BorderLayout.NORTH);" so that the button names appears within the ()
+        //add(nb); //BorderLayout.NORTH); //removed from JBorderLayout Class
+        //add(sb); // BorderLayout.SOUTH);
+        //add(eb); // BorderLayout.EAST);
+        //add(wb); //BorderLayout.WEST);
+        //add(cb); //BorderLayout.CENTER);
+        //change the "add(nb);" to "add("north", nb); so that each includes a string that names the added component
+        add("North", nb); 
+        add("South", sb); 
+        add("East", eb); 
+        add("West", wb); 
+        add("Center", cb);
+        //allows each buttons to initiate an actionEvnet (below)
+        nb.addActionListener(this);
+        sb.addActionListener(this);
+        eb.addActionListener(this);
+        wb.addActionListener(this);
+        cb.addActionListener(this);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        cardLayout.next(getContentPane());
+    }
+public static void main(String[] args)
+{
+    JCardLayout2 jbl = new JCardLayout2();  //changed name from previous class file
+    jbl.setSize(250, 250);
+    jbl.setVisible(true);
+}
+}
