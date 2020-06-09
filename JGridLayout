@@ -1,0 +1,33 @@
+package javaclassweek10;
+import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JGridLayout extends JFrame //class changed from previous class file and extends from the first class file)
+{
+    private JButton nb = new JButton("North"); //removed from JBorderLayout Class
+    private JButton sb = new JButton("South");
+    private JButton eb = new JButton("East");
+    private JButton wb = new JButton("West");
+    private JButton cb = new JButton("Center");
+
+    public JGridLayout() //constructor name changed from previous class file
+    {
+        //setLayout(new BorderLayout());  //changed from setLayout to FlowLayout(below)
+        //setLayout(new FlowLayout(FlowLayout.RIGHT)); changed from FlowLayout to GridLayout (below)
+        setLayout(new GridLayout(2,3,2,4));
+        //change the "add(nb, BorderLayout.NORTH);" so that the button names appears within the ()
+        add(nb); //BorderLayout.NORTH); //removed from JBorderLayout Class
+        add(sb); // BorderLayout.SOUTH);
+        add(eb); // BorderLayout.EAST);
+        add(wb); //BorderLayout.WEST);
+        add(cb); //BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+public static void main(String[] args)
+{
+    JGridLayout jbl = new JGridLayout();  //changed name from previous class file
+    jbl.setSize(250, 250);
+    jbl.setVisible(true);
+}
+}
