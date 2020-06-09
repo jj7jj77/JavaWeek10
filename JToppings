@@ -1,0 +1,100 @@
+package javaclasshomework10;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ItemListener;
+
+public class JToppings  extends JFrame implements ItemListener
+{    
+        //Ice Cream Toppings //boxes //have to be a check box and itemlistener
+    final double BlueberryIceCreamToppings = 0.50;  //1
+    final double ChocolateSprinklesIceCreamToppings = 0.50;
+    final double GummiesIceCreamToppings = 0.50;
+    final double MandMIceCreamToppings = 0.50;
+    final double OreoIceCreamToppings = 0.50;
+    final double PeppermintIceCreamToppings = 0.50;  //6
+    
+     double totalPrice;
+     
+        //boxes
+    JLabel IceCreamToppingsLabel = new JLabel("What Ice Cream Toppings would you like? ");
+    JCheckBox BlueberryToppings = new JCheckBox("Blueberry", false);
+    JCheckBox ChocolateSprinklesToppings = new JCheckBox("Chocolate Sprinkles", false);
+    JCheckBox GummiesToppings = new JCheckBox("Gummies", false);
+    JCheckBox MandMToppings = new JCheckBox("M & Ms", false);
+    JCheckBox OreoToppings = new JCheckBox("Oreos", false);
+    JCheckBox PeppermintToppings = new JCheckBox("Peppermint", false);
+    
+    JTextField Price = new JTextField(6);
+    JLabel PriceLabel = new JLabel("The total is " + totalPrice);   
+    
+    public JToppings()
+    {    
+        super("The Ice Cream Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+        add(IceCreamToppingsLabel);
+        add(BlueberryToppings);
+        add(ChocolateSprinklesToppings);
+        add(GummiesToppings);
+        add(MandMToppings);
+        add(OreoToppings);
+        add(PeppermintToppings);
+        add(Price);
+    
+        BlueberryToppings.addItemListener(this);
+        ChocolateSprinklesToppings.addItemListener(this);
+        GummiesToppings.addItemListener(this);
+        MandMToppings.addItemListener(this);
+        OreoToppings.addItemListener(this);
+        PeppermintToppings.addItemListener(this);
+    }
+    
+    @Override
+    public void itemStateChanged(ItemEvent e)
+    { 
+       Object source  = e.getSource();
+       int select = e.getStateChange(); 
+            //Topping Prices
+        if(e.getSource() == BlueberryToppings)
+            if(select == ItemEvent.SELECTED)
+                totalPrice += BlueberryIceCreamToppings;
+            else
+                totalPrice -= BlueberryIceCreamToppings;   
+        else if(e.getSource() == ChocolateSprinklesToppings)
+            if (select == ItemEvent.SELECTED)
+                totalPrice += ChocolateSprinklesIceCreamToppings;
+            else
+                totalPrice -= ChocolateSprinklesIceCreamToppings;
+        else if (e.getSource() == GummiesToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += GummiesIceCreamToppings;
+            else
+                totalPrice -= GummiesIceCreamToppings;
+        else if (e.getSource() == MandMToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += MandMIceCreamToppings;
+            else
+                totalPrice -= MandMIceCreamToppings;
+        else if (e.getSource() == OreoToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += OreoIceCreamToppings;
+            else
+                totalPrice -= OreoIceCreamToppings;
+        else if (e.getSource() == PeppermintToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += PeppermintIceCreamToppings;
+            else
+                totalPrice -= PeppermintIceCreamToppings;
+             Price.setText("$" + totalPrice);
+    }
+    
+public static void main(String[] args) 
+    {
+      JToppings aFrame = new JToppings();
+      final int Width = 400;
+      final int Height = 200;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
