@@ -1,0 +1,30 @@
+package javaclassweek10;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JBorderLayoutNoNorth extends JFrame  //class changed from previous class file and extends the first class file)
+{
+    //private JButton nb = new JButton("North"); //removed
+    private JButton sb = new JButton("South");
+    private JButton eb = new JButton("East");
+    private JButton wb = new JButton("West");
+    private JButton cb = new JButton("Center");
+
+    public JBorderLayoutNoNorth() //constructor name changed from previous class file
+    {
+        setLayout(new BorderLayout());
+        //add(nb, BorderLayout.NORTH); //removed
+        add(sb, BorderLayout.SOUTH);
+        add(eb, BorderLayout.EAST);
+        add(wb, BorderLayout.WEST);
+        add(cb, BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+public static void main(String[] args)
+{
+    JBorderLayoutNoNorth jbl = new JBorderLayoutNoNorth(); //changed name from previous class file
+    jbl.setSize(250, 250);
+    jbl.setVisible(true);
+}
+}
