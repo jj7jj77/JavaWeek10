@@ -1,0 +1,142 @@
+
+package hw10;
+ import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+ public class IceCream extends JFrame implements ActionListener 
+ {
+         final double SCOOPS=2.00;
+         final double TOPPINGS=0.50;
+         double totalprice;
+         
+         private Container con = getContentPane();
+         JLabel label1 = new JLabel("Flavors");
+         //radiobuttons
+        JRadioButton chocoButton = new JRadioButton("Choclate");
+        JRadioButton butterpButton = new JRadioButton("Butterpecan");
+        JRadioButton strawButton = new JRadioButton("Strawberry");
+        JRadioButton ckButton = new JRadioButton("Cookies&cream");
+        
+         ImageIcon chocoImage = new ImageIcon("choco.png");//images
+         ImageIcon butterImage = new ImageIcon("but.png");
+         ImageIcon blueImage = new ImageIcon("straw.png");
+         ImageIcon pistaImage = new ImageIcon("ck.png");
+          JLabel picture= new JLabel(" ");//picture label 
+          
+          JLabel label2 = new JLabel("Scoops");//scoops//l2
+          JRadioButton b1 = new JRadioButton("one");//no of scopes
+           JRadioButton b2 = new JRadioButton("two");
+           JRadioButton b3 = new JRadioButton("three");
+           JRadioButton b4 = new JRadioButton("four");
+           
+          JLabel label3 = new JLabel("Toppings");//l3
+       JCheckBox c5 = new JCheckBox("chocochips", false);
+      JCheckBox c6 = new JCheckBox("caramel", false);
+      JCheckBox c7 = new JCheckBox("m&m's", false);
+      JCheckBox c8 = new JCheckBox("blueberries", false);
+       JButton bt = new JButton("Buy");
+      JLabel label4 = new JLabel("Total price");//l4
+       JTextField totprice=new JTextField(4);
+           public IceCream() 
+        {
+             super("IceCream Parlour");
+              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             
+             add(label1);
+  
+         //Group the radio buttons.
+          ButtonGroup group = new ButtonGroup();
+        group.add(chocoButton);
+        group.add(butterpButton);
+        group.add(strawButton);
+        group.add(ckButton);
+         chocoButton.addActionListener(this);
+        butterpButton.addActionListener(this);
+        strawButton.addActionListener(this);
+        ckButton.addActionListener(this);
+      
+      JPanel radioPanel = new JPanel(new GridLayout(0, 1));
+        radioPanel.add(chocoButton);
+        radioPanel.add(butterpButton);
+        radioPanel.add(strawButton);
+        radioPanel.add(ckButton);
+       
+        add(radioPanel, BorderLayout.WEST);
+        add(picture, BorderLayout.CENTER);
+        con.setBackground(Color.cyan);
+        strawButton.setBackground(Color.PINK);
+        setLayout(new FlowLayout());
+        add(label2);
+         ButtonGroup group1 = new ButtonGroup();
+          group1.add(b1);
+        group1.add(b2);
+        group1.add(b3);
+        group1.add(b4);
+        
+        add(b1);//no of scopes buttons
+        add(b2);
+         add(b3);
+          add(b4);
+          b1.addActionListener(this);
+          b2.addActionListener(this);
+          b3.addActionListener(this);
+           b4.addActionListener(this);
+            add(label3);
+            add(c5);
+            add(c6);
+            add(c7);
+            add(c8);
+            c5.addActionListener(this);
+          c6.addActionListener(this);
+          c7.addActionListener(this);
+           c8.addActionListener(this);
+           add(bt);
+           add(label4);
+            add(totprice);//add textbox
+            
+            bt.addActionListener(this);//adding buy
+           
+        }
+        public void actionPerformed(ActionEvent e) 
+         {
+              Object Source = e.getSource();
+            if (Source==chocoButton)
+                picture.setIcon(chocoImage);
+        else if (Source==butterpButton)
+                 picture.setIcon(butterImage);
+         else if (Source==strawButton)
+                 picture.setIcon(blueImage);
+         else if (Source==ckButton)
+                 picture.setIcon(pistaImage);
+           int count =0;
+           int sc=0;
+           if(b1.isSelected())
+              sc=1;
+            if (b2.isSelected())
+              sc=2;
+            if (b3.isSelected())
+              sc=3;
+            if (b4.isSelected())
+              sc=4;
+            if (c5.isSelected())
+              count++;
+            if (c6.isSelected())
+              count++;
+            if (c7.isSelected())
+              count++;
+            if (c8.isSelected())
+              count++;
+            if(Source==bt)
+            {
+            totalprice=SCOOPS*sc+TOPPINGS*count;
+            totprice.setText("$"+totalprice);
+            }
+         }
+        
+    public static void main(String[] args) {
+        IceCream f = new IceCream();
+        f.setSize(800,500);
+        f.setVisible(true);
+    }
+ 
+}
