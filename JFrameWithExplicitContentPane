@@ -1,0 +1,22 @@
+package javaclassweek10;
+import java.awt.*;
+import javax.swing.*;
+public class JFrameWithExplicitContentPane extends JFrame
+{
+   private final int SIZE = 180;
+   private Container con = getContentPane(); //con(content)
+   private JButton button = new JButton("Press Me");
+   public JFrameWithExplicitContentPane()
+   {
+      super("Frame");
+      setSize(SIZE, SIZE);
+      con.setLayout(new FlowLayout());
+      con.add(button); //add it to con right ontop of jframe
+   }
+   public static void main(String[] args)
+   {
+      JFrameWithExplicitContentPane frame =
+         new JFrameWithExplicitContentPane();
+      frame.setVisible(true);
+   }
+}
