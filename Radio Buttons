@@ -1,0 +1,91 @@
+package javaclassweek10;
+import java.awt.*;  //imports
+import java.awt.event.*;
+import javax.swing.*;
+/*
+ * RadioButtonDemo.java requires these files:
+ *   images/Bird.gif
+ *   images/Cat.gif
+ *   images/Dog.gif
+ *   images/Rabbit.gif
+ *   images/Pig.gif
+ */
+public class RadioButtons extends JFrame implements ActionListener 
+{
+// 5 radio button components with each name
+        JRadioButton birdButton = new JRadioButton("Bird");
+        JRadioButton catButton = new JRadioButton("Cat");
+        JRadioButton dogButton = new JRadioButton("Dog");
+        JRadioButton rabbitButton = new JRadioButton("Rabbit");
+        JRadioButton hamsterButton = new JRadioButton("Hamster");
+   
+       // JLabel picture= new JLabel();
+        //5 images: the type is imageicon goes to file directory to find the image
+         ImageIcon birdImage = new ImageIcon("bird.jpg");
+         ImageIcon catImage = new ImageIcon("cat.jpg");
+         ImageIcon dogImage = new ImageIcon("dog.jpg");
+         ImageIcon rabbitImage = new ImageIcon("rabbit.jpg");
+         ImageIcon hamsterImage = new ImageIcon("hamster.jpg");
+        
+         JLabel picture= new JLabel(" "); // its empty. will be replaced by the picture
+         
+    public RadioButtons() 
+    {
+        super("Testing Radio buttons"); //constructor
+  
+       //Group the radio buttons. 
+        ButtonGroup group = new ButtonGroup(); //create group of the radio button
+        group.add(birdButton);
+        group.add(catButton);
+        group.add(dogButton);
+        group.add(rabbitButton);
+        group.add(hamsterButton); //one group together.. pick one and other will go away
+ 
+        //Register a listener for the radio buttons. //to all of them. 5 actionlistener. one each
+        birdButton.addActionListener(this);
+        catButton.addActionListener(this);
+        dogButton.addActionListener(this);
+        rabbitButton.addActionListener(this);
+        hamsterButton.addActionListener(this);
+        picture.setIcon(birdImage);  //a icon(picture (text) or picture that hold textfield 
+ 
+        //The preferred size is hard-coded to be the width of the
+        //widest image and the height of the tallest image.
+        //A real program would compute this.
+            //picture.setPreferredSize(new Dimension(177, 122));
+
+        //Put the radio buttons in a column in a panel.
+        JPanel radioPanel = new JPanel(new GridLayout(0, 1));  //transpartent box
+        radioPanel.add(birdButton);
+        radioPanel.add(catButton);
+        radioPanel.add(dogButton);
+        radioPanel.add(rabbitButton);
+        radioPanel.add(hamsterButton);
+ 
+        add(radioPanel, BorderLayout.WEST);
+        add(picture, BorderLayout.CENTER);
+    }
+ 
+    /** Listens to the radio buttons. **/
+    public void actionPerformed(ActionEvent e) 
+    {
+        Object Source = e.getSource();
+        if (Source==birdButton)
+            picture.setIcon(birdImage); //picture will become bird
+        else if (Source==catButton)
+                 picture.setIcon(catImage);
+         else if (Source==dogButton)
+                 picture.setIcon(dogImage);
+         else if (Source==rabbitButton)
+                 picture.setIcon(rabbitImage);
+         else if (Source==hamsterButton)
+                 picture.setIcon(hamsterImage);
+    }
+
+    public static void main(String[] args) 
+    {
+        RadioButtons f = new RadioButtons();
+        f.setSize(800,500);
+        f.setVisible(true);
+    }
+}
