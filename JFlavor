@@ -1,0 +1,128 @@
+package javaclasshomework10;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ItemListener;
+
+public class JFlavor extends JFrame implements ItemListener
+{
+      //Ice Cream Flavors  //list(scroll) or radio buttons
+     final double BlackcherryIceCreamFlavor = 0.50;
+     final double ChocolateIceCreamFlavor = 0.50;
+     final double MintChocolateChipIceCreamFlavor = 0.50;
+     final double NapoleonIceCreamFlavor = 0.50;
+     final double OreoIceCreamFlavor = 0.50;
+     final double PistachioIceCreamFlavor = 0.50;
+     final double StrawberryIceCreamFlavor = 0.50;
+     final double VanillaIceCreamFlavor = 0.50;
+     
+      double totalPrice = 0;
+     
+         //list(scroll(will be checkboxes)
+     FlowLayout flow = new FlowLayout();
+    //JLabel IceCreamFlavorLabel = new JLabel("What Flavor Ice Cream would you like? ");
+    JCheckBox majorChoice = new JCheckBox();
+    JCheckBox BlackcherryFlavor = new JCheckBox("Blackcherry", false);
+    JCheckBox ChocolateFlavor = new JCheckBox("Chocolate", false);
+    JCheckBox MintChocolateChipFlavor = new JCheckBox("Mint Chocolate Chip", false);
+    JCheckBox NapoleonFlavor = new JCheckBox("Napoleon", false);
+    JCheckBox OreoFlavor = new JCheckBox("Oreo", false);
+    JCheckBox PistachioFlavor = new JCheckBox("Pistachio", false);
+    JCheckBox StrawberryFlavor = new JCheckBox("Strawberry", false);
+    JCheckBox VanillaFlavor = new JCheckBox("Vanilla", false);
+    ButtonGroup group = new ButtonGroup();
+    
+    JTextField Price = new JTextField(26);
+    JLabel PriceLabel = new JLabel("The total is " + totalPrice);   
+    
+    public JFlavor()
+    {
+        super("The Ice Cream Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+    
+       group.add(OreoFlavor);
+       group.add(BlackcherryFlavor);
+       group.add(ChocolateFlavor);
+       
+        add(Price);
+        
+        /*add(IceCreamFlavorLabel);
+        add(BlackcherryFlavor);
+        add(ChocolateFlavor);
+        add(MintChocolateChipFlavor);
+        add(NapoleonFlavor);
+        add(OreoFlavor);
+        add(PistachioFlavor);
+        add(StrawberryFlavor);
+        add(VanillaFlavor);
+        add(Price);*/
+        
+        BlackcherryFlavor.addItemListener(this);
+        ChocolateFlavor.addItemListener(this);
+        MintChocolateChipFlavor.addItemListener(this);
+        NapoleonFlavor.addItemListener(this);
+        OreoFlavor.addItemListener(this);
+        PistachioFlavor.addItemListener(this);
+        StrawberryFlavor.addItemListener(this);
+        VanillaFlavor.addItemListener(this);
+    }
+    @Override
+    public void itemStateChanged(ItemEvent e)
+    { 
+       Object source  = e.getSource();
+       int select = e.getStateChange(); 
+       //Flavor Prices     
+        if (e.getSource() == BlackcherryFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += BlackcherryIceCreamFlavor;
+            else
+                totalPrice -= BlackcherryIceCreamFlavor;
+         if (e.getSource() == ChocolateFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += ChocolateIceCreamFlavor;
+            else
+                totalPrice -= ChocolateIceCreamFlavor;
+       if (e.getSource() == MintChocolateChipFlavor) 
+           if(select == ItemEvent.SELECTED)
+                totalPrice += MintChocolateChipIceCreamFlavor;
+            else
+                totalPrice -= MintChocolateChipIceCreamFlavor;
+        if (e.getSource() == NapoleonFlavor) 
+           if(select == ItemEvent.SELECTED)
+                totalPrice += NapoleonIceCreamFlavor;
+            else
+                totalPrice -= NapoleonIceCreamFlavor;
+         if (e.getSource() == OreoFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += OreoIceCreamFlavor;
+            else
+                totalPrice -= OreoIceCreamFlavor;
+         if (e.getSource() == PistachioFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += PistachioIceCreamFlavor;
+            else
+                totalPrice -= PistachioIceCreamFlavor;
+         if (e.getSource() == StrawberryFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += StrawberryIceCreamFlavor;
+            else
+                totalPrice -= StrawberryIceCreamFlavor;
+         if (e.getSource() == VanillaFlavor) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += VanillaIceCreamFlavor;
+            else
+             totalPrice -= VanillaIceCreamFlavor;
+              Price.setText("$" + totalPrice);
+    }
+    
+public static void main(String[] args) 
+    {
+      JFlavor aFrame = new JFlavor();
+      final int Width = 1000;
+      final int Height = 900;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
+
