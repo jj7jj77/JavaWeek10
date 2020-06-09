@@ -1,0 +1,32 @@
+package javaclassweek10;
+import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JFlowLayoutRight extends JFrame //class changed from previous class file and extends from the first class file)
+{
+    private JButton nb = new JButton("North"); //removed from JBorderLayout Class
+    private JButton sb = new JButton("South");
+    private JButton eb = new JButton("East");
+    private JButton wb = new JButton("West");
+    private JButton cb = new JButton("Center");
+
+    public JFlowLayoutRight() //constructor name changed from previous class file
+    {
+        //setLayout(new BorderLayout());  //changed from setLayout to FlowLayout
+        setLayout(new FlowLayout(FlowLayout.RIGHT));
+        //change the "add(nb, BorderLayout.NORTH);" so that the button names appears within the ()
+        add(nb); //BorderLayout.NORTH); //removed from JBorderLayout Class
+        add(sb); // BorderLayout.SOUTH);
+        add(eb); // BorderLayout.EAST);
+        add(wb); //BorderLayout.WEST);
+        add(cb); //BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+public static void main(String[] args)
+{
+    JFlowLayoutRight jbl = new JFlowLayoutRight();  //changed name from previous class file
+    jbl.setSize(250, 250);
+    jbl.setVisible(true);
+}
+}
